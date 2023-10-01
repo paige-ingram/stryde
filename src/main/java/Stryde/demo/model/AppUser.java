@@ -14,7 +14,7 @@ public class AppUser {
     private String password;
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Shoe> shoes = new ArrayList<>();
 
     // Default Constructor

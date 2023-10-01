@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ShoeRepo extends JpaRepository<Shoe, Long> {
-    List<Shoe> findByUserId(Long userId);
+    default List<Shoe> findByAppUserId(Long userId) {
+        return null;
+    }
 }
