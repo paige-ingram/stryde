@@ -25,7 +25,8 @@ public class Shoe {
     public Shoe() {}
 
     // Parameterized Constructor
-    public Shoe(String brand, String model, Date purchaseDate, Double initialMileage, Double totalMileage, AppUser appUser) {
+    public Shoe(Long id, String brand, String model, Date purchaseDate, Double initialMileage, Double totalMileage, AppUser appUser) {
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.purchaseDate = purchaseDate;
@@ -35,6 +36,7 @@ public class Shoe {
     }
 
     // GETTERS
+    public Long getId() { return id;}
     public String getBrand() {
         return brand;
     }

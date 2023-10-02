@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import Stryde.demo.model.Shoe;
 import Stryde.demo.service.ShoeService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -21,7 +22,14 @@ public class ShoeController {
     public String index(Model model) {
         List<Shoe> shoes = shoeService.getAllShoes();
         model.addAttribute("shoes", shoes);
-        return "index"; // This assumes you've named the Thymeleaf template as 'index.html'
+        return "index";
+    }
+
+    @GetMapping("/logRun")
+    public String logRun(Model model) {
+        List<Shoe> shoes = shoeService.getAllShoes();
+        model.addAttribute("shoes", shoes);
+        return "logRun";
     }
 
     // This endpoint serves the form to add a shoe using Thymeleaf template
@@ -37,12 +45,14 @@ public class ShoeController {
         return shoeService.saveShoe(shoe);
     }
 
-    @PostMapping("/api/logRun/{id}")
-    public Shoe logRun(@PathVariable Long id, @RequestParam Double addedMileage) {
-        return shoeService.logRun(id, addedMileage);
+    @PostMapping("/logRun")
+    public String logRunForm(@ModelAttribute Shoe shoe, @RequestParam("addedMileage") Double addedMileage, RedirectAttributes redirectAttributes) {
+        Shoe updatedShoe = shoeService.logRun(shoe.getId(), addedMileage);
+        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getModel());
+        return "redirect:/shoes/"; // After logging, redirect back to the main index page
     }
 
-    @GetMapping("/api/{id}/mileage")
+    @GetMapping("/getTotalMileage")
     public Double getTotalMileage(@PathVariable Long id) {
         return shoeService.getTotalMileage(id);
     }
