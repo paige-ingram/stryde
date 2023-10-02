@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Shoes List</title>
+</head>
+<body>
+<h1>Shoes</h1>
+<table>
+  <tr>
+    <th>Brand</th>
+    <th>Model</th>
+    <th>Total Mileage</th>
+  </tr>
+  <tr th:each="shoe : ${shoes}">
+    <td th:text="${shoe.brand}"></td>
+    <td th:text="${shoe.model}"></td>
+    <td th:text="${shoe.totalMileage}"></td>
+  </tr>
+</table>
+</body>
+</html>

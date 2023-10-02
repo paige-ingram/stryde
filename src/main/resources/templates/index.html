@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stryde Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Stryde!</h1>
+        <p class="lead">Track your runs and monitor your shoe mileage with ease.</p>
+        <hr class="my-4">
+        <p>Log a new run, add a new pair of shoes, or check out your stats below.</p>
+        <a class="btn btn-primary btn-lg" href="/logRun" role="button">Log a Run</a>
+        <a class="btn btn-secondary btn-lg ml-3" href="/addShoe" role="button">Add a Shoe</a>
+    </div>
+
+    <h3>Your Shoes and Mileage:</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Total Mileage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- This is a Thymeleaf loop to display shoe details -->
+        <tr th:each="shoe : ${shoes}">
+            <td th:text="${shoe.brand}"></td>
+            <td th:text="${shoe.model}"></td>
+            <td th:text="${shoe.totalMileage}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional: Add Bootstrap JS and jQuery if you need any interactive components -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

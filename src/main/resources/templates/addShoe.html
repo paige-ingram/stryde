@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Shoe</title>
+</head>
+<body>
+<h1>Add a New Shoe</h1>
+<form action="#" th:action="@{/api/shoes/add}" th:object="${shoe}" method="post">
+    Brand: <input type="text" th:field="*{brand}"/><br/>
+    Model: <input type="text" th:field="*{model}"/><br/>
+    <!-- Add other fields similarly -->
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

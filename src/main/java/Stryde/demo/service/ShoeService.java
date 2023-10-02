@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ShoeService {
     @Autowired
@@ -32,6 +34,10 @@ public class ShoeService {
                 .orElseThrow(() -> new RuntimeException("Shoe with ID " + id + " not found"));
         // Return its total mileage
         return shoe.getTotalMileage();
+    }
+
+    public List<Shoe> getAllShoes() {
+        return shoeRepo.findAll();
     }
 
 }

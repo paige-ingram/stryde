@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log Runs</title>
+</head>
+<body>
+<h1>Log a run</h1>
+<form action="#" th:action="@{/api/logRun/__${shoe.id}__}" th:object="${shoe}" method="post">
+    Shoe ID: <input type="number" th:field="*{id}" placeholder="Enter Shoe ID" readonly/><br/>
+    Miles Ran: <input type="number" step="0.01" name="addedMileage" placeholder="Enter miles ran"/><br/>
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
