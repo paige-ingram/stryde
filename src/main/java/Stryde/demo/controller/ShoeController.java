@@ -27,10 +27,17 @@ public class ShoeController {
 
     @GetMapping("/logRun")
     public String logRun(Model model) {
-        List<Shoe> shoes = shoeService.getAllShoes();
-        model.addAttribute("shoes", shoes);
+//        List<Shoe> shoes = shoeService.getAllShoes();
+        model.addAttribute("shoe", new Shoe());
         return "logRun";
     }
+    @PostMapping("/api/log")
+    public String logRunForm(@ModelAttribute Shoe shoe, @RequestParam("addedMileage") Double addedMileage, RedirectAttributes redirectAttributes) {
+        Shoe updatedShoe = shoeService.logRun(shoe.getId(), addedMileage);
+        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getModel());
+        return "redirect:/shoes/"; // After logging, redirect back to the main index page
+    }
+
 
     // This endpoint serves the form to add a shoe using Thymeleaf template
     @GetMapping("/addShoe")
@@ -41,15 +48,9 @@ public class ShoeController {
 
     // This is the REST endpoint to save the shoe
     @PostMapping("/api/add")
-    public Shoe saveShoe(@RequestBody Shoe shoe) {
-        return shoeService.saveShoe(shoe);
-    }
-
-    @PostMapping("/logRun")
-    public String logRunForm(@ModelAttribute Shoe shoe, @RequestParam("addedMileage") Double addedMileage, RedirectAttributes redirectAttributes) {
-        Shoe updatedShoe = shoeService.logRun(shoe.getId(), addedMileage);
-        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getModel());
-        return "redirect:/shoes/"; // After logging, redirect back to the main index page
+    public String saveShoe(@ModelAttribute Shoe shoe) {
+        shoeService.saveShoe(shoe);
+        return "redirect:/shoes/";
     }
 
     @GetMapping("/getTotalMileage")

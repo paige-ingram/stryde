@@ -2,6 +2,8 @@ package Stryde.demo;
 
 import Stryde.demo.model.AppUser;
 import Stryde.demo.model.Shoe;
+import Stryde.demo.repo.ShoeRepo;
+import Stryde.demo.service.ShoeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -57,6 +57,7 @@ public class Shoe {
     }
 
     // SETTERS
+    public void setId(Long id) { this.id = id;}
     public void setBrand(String brand) {
         this.brand = brand;
     }
