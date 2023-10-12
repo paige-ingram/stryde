@@ -9,7 +9,7 @@ public class Shoe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String name;
     private String brand;
     private String model;
     private Date purchaseDate;
@@ -25,8 +25,9 @@ public class Shoe {
     public Shoe() {}
 
     // Parameterized Constructor
-    public Shoe(Long id, String brand, String model, Date purchaseDate, Double initialMileage, Double totalMileage, AppUser appUser) {
+    public Shoe(Long id, String name, String brand, String model, Date purchaseDate, Double initialMileage, Double totalMileage, AppUser appUser) {
         this.id = id;
+        this.name = name;
         this.brand = brand;
         this.model = model;
         this.purchaseDate = purchaseDate;
@@ -37,6 +38,9 @@ public class Shoe {
 
     // GETTERS
     public Long getId() { return id;}
+
+    public String getName() { return name;}
+
     public String getBrand() {
         return brand;
     }

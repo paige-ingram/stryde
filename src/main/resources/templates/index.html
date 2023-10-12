@@ -24,6 +24,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>Name</th>
             <th>Brand</th>
             <th>Model</th>
             <th>Total Mileage</th>
@@ -32,6 +33,7 @@
         <tbody>
         <!-- This is a Thymeleaf loop to display shoe details -->
         <tr th:each="shoe : ${shoes}">
+            <td th:text="${shoe.name}"></td>
             <td th:text="${shoe.brand}"></td>
             <td th:text="${shoe.model}"></td>
             <td th:text="${shoe.totalMileage}"></td>

@@ -1,5 +1,6 @@
 package Stryde.demo.controller;
 
+import Stryde.demo.model.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,17 +28,33 @@ public class ShoeController {
 
     @GetMapping("/logRun")
     public String logRun(Model model) {
-//        List<Shoe> shoes = shoeService.getAllShoes();
         model.addAttribute("shoe", new Shoe());
         return "logRun";
     }
+//    @PostMapping("/api/log")
+//    public String logRunForm(@RequestParam("shoeName") String shoeName, @RequestParam("addedKms") Double addedKms, RedirectAttributes redirectAttributes) {
+//        Shoe updatedShoe = appUser.findShoeByName(shoeName);
+//        Double oldKms = updatedShoe.getTotalMileage();
+//        updatedShoe.setTotalMileage(oldKms + addedKms);
+//        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getName());
+//        return "redirect:/shoes/"; // After logging, redirect back to the main index page
+//    }
+
     @PostMapping("/api/log")
-    public String logRunForm(@ModelAttribute Shoe shoe, @RequestParam("addedMileage") Double addedMileage, RedirectAttributes redirectAttributes) {
-        Shoe updatedShoe = shoeService.logRun(shoe.getId(), addedMileage);
-        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getModel());
+    public String logRunForm(@RequestParam("name") String shoeName, @RequestParam("addedKms") Double addedKms, RedirectAttributes redirectAttributes) {
+        Shoe updatedShoe = shoeService.findShoeByName(shoeName);  // Assuming you've a method in ShoeService to find a shoe by name
+
+        if (updatedShoe == null) {
+            redirectAttributes.addFlashAttribute("error", "Shoe not found!");
+            return "redirect:/shoes/";
+        }
+
+        Double oldKms = updatedShoe.getTotalMileage();
+        updatedShoe.setTotalMileage(oldKms + addedKms);
+        shoeService.saveShoe(updatedShoe);
+        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getName());
         return "redirect:/shoes/"; // After logging, redirect back to the main index page
     }
-
 
     // This endpoint serves the form to add a shoe using Thymeleaf template
     @GetMapping("/addShoe")

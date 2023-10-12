@@ -13,6 +13,10 @@ public class ShoeService {
     @Autowired
     private ShoeRepo shoeRepo;
 
+    public Shoe findShoeByName(String name) {
+        return shoeRepo.findByName(name);
+    }
+
     public Shoe logRun(Long id, Double addedMileage) {
         Shoe shoe = shoeRepo.findById(id).orElseThrow(() -> new RuntimeException("Shoe not found"));
         shoe.setTotalMileage(shoe.getTotalMileage() + addedMileage);

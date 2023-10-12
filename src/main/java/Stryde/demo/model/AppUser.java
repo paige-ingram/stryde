@@ -67,6 +67,16 @@ public class AppUser {
         shoe.setUser(null);
     }
 
+// Method not in use
+//    public Shoe findShoeByName(String name) {
+//        for (Shoe shoe : shoes) {
+//            if (shoe.getName() == name) {
+//                return shoe;
+//            }
+//        }
+//        return new Shoe();
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -9,4 +9,5 @@ public interface ShoeRepo extends JpaRepository<Shoe, Long> {
     default List<Shoe> findByAppUserId(Long userId) {
         return null;
     }
+    Shoe findByName(String name);
 }

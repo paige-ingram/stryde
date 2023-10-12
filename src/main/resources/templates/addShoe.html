@@ -6,9 +6,9 @@
 <body>
 <h1>Add a New Shoe</h1>
 <form action="#" th:action="@{/shoes/api/add}" th:object="${shoe}" method="post">
+    Name:  <input type="text" th:field="*{name}"/><br/>
     Brand: <input type="text" th:field="*{brand}"/><br/>
     Model: <input type="text" th:field="*{model}"/><br/>
-    <!-- Add other fields similarly -->
     <input type="submit" value="Submit"/>
 </form>
 </body>
