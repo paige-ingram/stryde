@@ -4,6 +4,7 @@ import Stryde.demo.model.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import Stryde.demo.model.Shoe;
 import Stryde.demo.service.ShoeService;
@@ -31,26 +32,29 @@ public class ShoeController {
         model.addAttribute("shoe", new Shoe());
         return "logRun";
     }
-//    @PostMapping("/api/log")
-//    public String logRunForm(@RequestParam("shoeName") String shoeName, @RequestParam("addedKms") Double addedKms, RedirectAttributes redirectAttributes) {
-//        Shoe updatedShoe = appUser.findShoeByName(shoeName);
-//        Double oldKms = updatedShoe.getTotalMileage();
-//        updatedShoe.setTotalMileage(oldKms + addedKms);
-//        redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getName());
-//        return "redirect:/shoes/"; // After logging, redirect back to the main index page
-//    }
 
     @PostMapping("/api/log")
     public String logRunForm(@RequestParam("name") String shoeName, @RequestParam("addedKms") Double addedKms, RedirectAttributes redirectAttributes) {
-        Shoe updatedShoe = shoeService.findShoeByName(shoeName);  // Assuming you've a method in ShoeService to find a shoe by name
+        System.out.println(shoeService.findShoeByName(shoeName));
+        Shoe updatedShoe = shoeService.findShoeByName(shoeName);  
+        System.out.println(updatedShoe);
 
         if (updatedShoe == null) {
             redirectAttributes.addFlashAttribute("error", "Shoe not found!");
             return "redirect:/shoes/";
         }
+        // System.out.println(updatedShoe.getBrand());
+        // System.out.println(updatedShoe.getModel());
+        // System.out.println(updatedShoe.getName());
+        // System.out.println(updatedShoe.getInitialMileage());
+
 
         Double oldKms = updatedShoe.getTotalMileage();
-        updatedShoe.setTotalMileage(oldKms + addedKms);
+        if (oldKms != null) {
+            updatedShoe.setTotalMileage(oldKms + addedKms);
+        } else {
+            updatedShoe.setTotalMileage(addedKms);
+        }
         shoeService.saveShoe(updatedShoe);
         redirectAttributes.addFlashAttribute("message", "Run logged successfully for " + updatedShoe.getName());
         return "redirect:/shoes/"; // After logging, redirect back to the main index page

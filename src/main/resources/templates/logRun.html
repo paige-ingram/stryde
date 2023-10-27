@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Log a run</h1>
-<form action="#" th:action="@{/shoes/logRun}" th:object="${shoe}" method="post">
+<form action="#" th:action="@{/shoes/api/log}" th:object="${shoe}" method="post">
     Name: <input type="text" th:field="*{name}" placeholder="Enter shoe name"/><br/>
     Kilometres Ran: <input type="number" step="0.01" name="addedKms" placeholder="Enter kilometres ran"/><br/>
     <input type="submit" value="Submit"/>

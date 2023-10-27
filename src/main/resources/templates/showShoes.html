@@ -12,10 +12,11 @@
     <th>Total Mileage</th>
   </tr>
   <tr th:each="shoe : ${shoes}">
-    <td th:text="${shoe.brand}"></td>
-    <td th:text="${shoe.model}"></td>
-    <td th:text="${shoe.totalMileage}"></td>
-  </tr>
+    <td th:text="${shoe.getName}"></td>
+    <td th:text="${shoe.getBrand}"></td>
+    <td th:text="${shoe.getModel}"></td>
+    <td th:text="${shoe.getTotalMileage}"></td>
+  </tr>  
 </table>
 </body>
 </html>

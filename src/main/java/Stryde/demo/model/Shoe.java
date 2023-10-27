@@ -22,7 +22,9 @@ public class Shoe {
 
     // CONSTRUCTOR
     // Default Constructor
-    public Shoe() {}
+    public Shoe() {
+        this.initialMileage = 0.0;
+    }
 
     // Parameterized Constructor
     public Shoe(Long id, String name, String brand, String model, Date purchaseDate, Double initialMileage, Double totalMileage, AppUser appUser) {
@@ -61,7 +63,13 @@ public class Shoe {
     }
 
     // SETTERS
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setId(Long id) { this.id = id;}
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
